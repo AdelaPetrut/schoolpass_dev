@@ -48,17 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Entities\IResponse.cs" />
+    <Compile Include="Implementation\Entities\Enums.cs" />
+    <Compile Include="Contracts\Entities\IDeviceRegistration.cs" />
+    <Compile Include="Contracts\Services\IPushNotificationsService.cs" />
+    <Compile Include="Implementation\Entities\Internal\AndroiNotificationWrapper.cs" />
+    <Compile Include="Implementation\Entities\Internal\IOSNotificationWrapper.cs" />
+    <Compile Include="Implementation\Services\PushNotificationsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\Entities\" />
-    <Folder Include="Contracts\Services\" />
-    <Folder Include="Implementation\Entities\" />
-    <Folder Include="Implementation\Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
