@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solutrack.Notifications.Api", "Solutrack.Notifications.Api\Solutrack.Notifications.Api.csproj", "{373B62B9-4504-4A1B-8F95-E3CAF9B8267D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solutrack.Notifications.PushNotifications", "Solutrack.Notifications.PushNotifications\Solutrack.Notifications.PushNotifications.csproj", "{BED344CB-3FAC-4EC9-99DF-F5CA88C4D93C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{373B62B9-4504-4A1B-8F95-E3CAF9B8267D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{373B62B9-4504-4A1B-8F95-E3CAF9B8267D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{373B62B9-4504-4A1B-8F95-E3CAF9B8267D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{373B62B9-4504-4A1B-8F95-E3CAF9B8267D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BED344CB-3FAC-4EC9-99DF-F5CA88C4D93C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BED344CB-3FAC-4EC9-99DF-F5CA88C4D93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BED344CB-3FAC-4EC9-99DF-F5CA88C4D93C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BED344CB-3FAC-4EC9-99DF-F5CA88C4D93C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D98E759-20CF-489F-876B-1F628BD9C538}
+	EndGlobalSection
+EndGlobal
