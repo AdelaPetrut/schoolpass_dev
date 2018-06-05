@@ -48,6 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\DeviceEnums.cs" />
+    <Compile Include="Contracts\Entities\AcknowledgmentDeviceMessage.cs" />
+    <Compile Include="Contracts\Entities\BaseApplicationEvent.cs" />
+    <Compile Include="Contracts\Entities\BaseDeviceMessage.cs" />
+    <Compile Include="Contracts\Entities\EventDeviceMessage.cs" />
+    <Compile Include="Contracts\Entities\InformationDeviceMessage.cs" />
+    <Compile Include="Contracts\Entities\LoginApplicationEventMessage.cs" />
+    <Compile Include="Contracts\Entities\LogoutApplicationEventMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,7 +63,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Contracts\Entities\" />
     <Folder Include="Contracts\Services\" />
     <Folder Include="Implementation\Entities\" />
     <Folder Include="Implementation\Services\" />
