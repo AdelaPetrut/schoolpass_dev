@@ -11,7 +11,7 @@ using static Solutrack.Notifications.PushNotifications.Contracts.Enums;
 
 namespace Solutrack.Notifications.PushNotifications.Contracts.Services
 {
-    internal class PushNotificationsService
+    public class PushNotificationsService
     {
         private NotificationHubClient hub;
 
