@@ -6,14 +6,7 @@ using System.Threading.Tasks;
 
 namespace Solutrack.Notifications.PushNotifications.Contracts.Entities
 {
-    public interface IResponse
+    public class LogoutApplicationEventMessage : BaseApplicationEvent
     {
-        string Message { get; set; }
-        bool IsSuccess { get; set; }
-    }
-
-    public interface IResponse<T> : IResponse
-    {
-        T Value { get; set; }
     }
 }

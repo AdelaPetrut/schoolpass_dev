@@ -18,6 +18,8 @@ namespace Solutrack.Notifications.Api
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            PushNotifications.PushNotificationFacade.Instance.Initialize("Endpoint=sb://solutrack.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=SZNnZdpl0lITr/6EdopOLVPuCRdZVWa05FLYYbALOWs=", "solutrack");
         }
     }
 }
