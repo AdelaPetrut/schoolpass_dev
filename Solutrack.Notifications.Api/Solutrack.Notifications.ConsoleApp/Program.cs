@@ -35,24 +35,9 @@ namespace Solutrack.Notifications.ConsoleApp
                             string handle = System.Console.ReadLine();
                             if (string.IsNullOrEmpty(handle)) return;
 
-                            // get registrationId using handle
-
-                            var registrationIdResponse = AsyncHelpers.RunSync<Response<string>>(() => { return PushNotificationFacade.Instance.Service.GetRegistrationIdForDeviceAsync(handle); });
-                            if (registrationIdResponse.IsSuccess == false)
+                            var registrationResponse = AsyncHelpers.RunSync<Response<string>>(() =>
                             {
-                                System.Console.WriteLine(registrationIdResponse.Message);
-                                return;
-                            }
-
-                            // register device
-
-                            var registrationResponse = AsyncHelpers.RunSync<Response>(() =>
-                            {
-                                return PushNotificationFacade.Instance.Service.RegisterDeviceAsync(registrationIdResponse.Value, new DeviceRegistration
-                                {
-                                    DeviceToken = handle,
-                                    Platform = Platform.gcm
-                                }, "synergo", new List<int> { 1, 2, 3 });
+                                return PushNotificationFacade.Instance.Service.RegisterDeviceAsync(Platform.gcm, handle, "synergo", new List<int> { 1, 2, 3 });
 
                             });
                             if (registrationResponse.IsSuccess == false)
@@ -60,8 +45,8 @@ namespace Solutrack.Notifications.ConsoleApp
                                 System.Console.WriteLine(registrationResponse.Message);
                                 return;
                             }
-                            
-                            registrationId = registrationIdResponse.Value;
+
+                            registrationId = registrationResponse.Value;
                             System.Console.WriteLine("Your device is registered");
                             break;
                         }

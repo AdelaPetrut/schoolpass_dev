@@ -20,7 +20,7 @@ namespace Solutrack.Notifications.PushNotifications.Contracts.Services
             this.hub = hub;
         }
 
-        public async Task<Response<string>> GetRegistrationIdForDeviceAsync(string handle)
+        private async Task<Response<string>> GetRegistrationIdForDeviceAsync(string handle)
         {
             Response<string> response = new Response<string>();
             try
@@ -53,31 +53,34 @@ namespace Solutrack.Notifications.PushNotifications.Contracts.Services
             return response;
         }
 
-        public async Task<Response> RegisterDeviceAsync(string registrationId, DeviceRegistration deviceRegistrtion, string username, List<int> deviceIds)
+        public async Task<Response<string>> RegisterDeviceAsync(Platform platform, string deviceToken, string username, List<int> deviceIds)
         {
-            Response response = new Response();
+            Response<string> response = new Response<string>();
 
             try
             {
+                var registrationIdResponse = await GetRegistrationIdForDeviceAsync(deviceToken);
+                if (registrationIdResponse.IsSuccess == false) return registrationIdResponse;
+
                 RegistrationDescription registration = null;
-                switch (deviceRegistrtion.Platform)
+                switch (platform)
                 {
                     case Enums.Platform.apns:
                         var alertTemplate = string.Format("{{\"aps\":{{\"alert\":\"$({0})\" }}, \"base64Data\" : \"$({1})\", \"messageType\" : \"$({2})\"}}",
                             Constants.NOTIFICATION_MESSAGE_KEY, Constants.BASE64_MESSAGE_KEY, Constants.MESSAGE_TYPE);
-                        registration = new AppleTemplateRegistrationDescription(deviceRegistrtion.DeviceToken, alertTemplate);
+                        registration = new AppleTemplateRegistrationDescription(deviceToken, alertTemplate);
                         break;
                     case Enums.Platform.gcm:
                         var messageTemplate = string.Format("{{\"data\":{{\"message\":\"$({0})\", \"base64Data\" : \"$({1})\", \"messageType\" : \"$({2})\"}}}}",
                             Constants.NOTIFICATION_MESSAGE_KEY,
                             Constants.BASE64_MESSAGE_KEY, Constants.MESSAGE_TYPE);
-                        registration = new GcmTemplateRegistrationDescription(deviceRegistrtion.DeviceToken, messageTemplate);
+                        registration = new GcmTemplateRegistrationDescription(deviceToken, messageTemplate);
                         break;
                     default:
                         return null;
                 }
 
-                registration.RegistrationId = registrationId;
+                registration.RegistrationId = registrationIdResponse.Value;
                 // add check if user is allowed to add these tags
                 if (deviceIds != null)
                     registration.Tags = new HashSet<string>(deviceIds.Select(s => s.ToString()));
@@ -90,6 +93,7 @@ namespace Solutrack.Notifications.PushNotifications.Contracts.Services
                     response.IsSuccess = false;
                     response.Message = Constants.GENERIC_ERROR_REGISTER_DEVICE;
                 }
+                response.Value = registrationIdResponse.Value;
             }
             catch (Exception ex)
             {
